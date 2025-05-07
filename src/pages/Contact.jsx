@@ -1,6 +1,7 @@
 import { useState } from "react";
 import Button from "../components/Button";
 import Input from "../components/Input";
+import { useTranslation } from "react-i18next";
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -12,6 +13,7 @@ const Contact = () => {
   const [errors, setErrors] = useState({});
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitSuccess, setSubmitSuccess] = useState(false);
+  const { t } = useTranslation();
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -30,14 +32,16 @@ const Contact = () => {
 
   const validateForm = () => {
     const newErrors = {};
-    if (!formData.name) newErrors.name = "Name is required";
+    if (!formData.name) newErrors.name = t("contact.form.nameRequired");
     if (!formData.email) {
-      newErrors.email = "Email is required";
+      newErrors.email = t("contact.form.emailRequired");
     } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
-      newErrors.email = "Please enter a valid email address";
+      newErrors.email = t("contact.form.invalidEmail");
     }
-    if (!formData.subject) newErrors.subject = "Subject is required";
-    if (!formData.message) newErrors.message = "Message is required";
+    if (!formData.subject)
+      newErrors.subject = t("contact.form.subjectRequired");
+    if (!formData.message)
+      newErrors.message = t("contact.form.messageRequired");
     return newErrors;
   };
 
@@ -63,7 +67,7 @@ const Contact = () => {
       });
     } catch (error) {
       setErrors({
-        submit: "Failed to send message. Please try again.",
+        submit: t("contact.form.error"),
       });
     } finally {
       setIsSubmitting(false);
@@ -73,13 +77,15 @@ const Contact = () => {
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
       <div className="max-w-3xl mx-auto">
-        <h1 className="text-3xl font-bold text-gray-900 mb-8">Contact Us</h1>
+        <h1 className="text-3xl font-bold text-gray-900 mb-8">
+          {t("contact.title")}
+        </h1>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
           {/* Contact Information */}
           <div>
             <h2 className="text-xl font-semibold text-gray-900 mb-4">
-              Get in Touch
+              {t("contact.getInTouch")}
             </h2>
             <div className="space-y-4">
               <div className="flex items-start">
@@ -99,9 +105,11 @@ const Contact = () => {
                   </svg>
                 </div>
                 <div className="ml-3">
-                  <p className="text-sm font-medium text-gray-900">Email</p>
+                  <p className="text-sm font-medium text-gray-900">
+                    {t("contact.info.email")}
+                  </p>
                   <p className="text-sm text-gray-500">
-                    support@gamerecharge.com
+                    {t("contact.info.emailValue")}
                   </p>
                 </div>
               </div>
@@ -123,8 +131,12 @@ const Contact = () => {
                   </svg>
                 </div>
                 <div className="ml-3">
-                  <p className="text-sm font-medium text-gray-900">Phone</p>
-                  <p className="text-sm text-gray-500">+1 (555) 123-4567</p>
+                  <p className="text-sm font-medium text-gray-900">
+                    {t("contact.info.phone")}
+                  </p>
+                  <p className="text-sm text-gray-500">
+                    {t("contact.info.phoneValue")}
+                  </p>
                 </div>
               </div>
 
@@ -151,9 +163,11 @@ const Contact = () => {
                   </svg>
                 </div>
                 <div className="ml-3">
-                  <p className="text-sm font-medium text-gray-900">Location</p>
+                  <p className="text-sm font-medium text-gray-900">
+                    {t("contact.info.location")}
+                  </p>
                   <p className="text-sm text-gray-500">
-                    123 Gaming Street, Digital City, 12345
+                    {t("contact.info.locationValue")}
                   </p>
                 </div>
               </div>
@@ -163,45 +177,43 @@ const Contact = () => {
           {/* Contact Form */}
           <div>
             <h2 className="text-xl font-semibold text-gray-900 mb-4">
-              Send us a Message
+              {t("contact.sendMessage")}
             </h2>
             {submitSuccess ? (
               <div className="bg-green-50 p-4 rounded-md">
-                <p className="text-green-800">
-                  Thank you for your message! We'll get back to you soon.
-                </p>
+                <p className="text-green-800">{t("contact.form.success")}</p>
               </div>
             ) : (
               <form onSubmit={handleSubmit} className="space-y-4">
                 <Input
-                  label="Name"
+                  label={t("contact.form.name")}
                   type="text"
                   name="name"
                   value={formData.name}
                   onChange={handleInputChange}
-                  placeholder="Your name"
+                  placeholder={t("contact.form.namePlaceholder")}
                   required
                   error={errors.name}
                 />
 
                 <Input
-                  label="Email"
+                  label={t("contact.form.email")}
                   type="email"
                   name="email"
                   value={formData.email}
                   onChange={handleInputChange}
-                  placeholder="Your email"
+                  placeholder={t("contact.form.emailPlaceholder")}
                   required
                   error={errors.email}
                 />
 
                 <Input
-                  label="Subject"
+                  label={t("contact.form.subject")}
                   type="text"
                   name="subject"
                   value={formData.subject}
                   onChange={handleInputChange}
-                  placeholder="Message subject"
+                  placeholder={t("contact.form.subjectPlaceholder")}
                   required
                   error={errors.subject}
                 />
@@ -211,7 +223,7 @@ const Contact = () => {
                     htmlFor="message"
                     className="block text-sm font-medium text-gray-700 mb-1"
                   >
-                    Message
+                    {t("contact.form.message")}
                   </label>
                   <textarea
                     id="message"
@@ -222,7 +234,7 @@ const Contact = () => {
                     className={`w-full px-3 py-2 border ${
                       errors.message ? "border-red-500" : "border-gray-300"
                     } rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500`}
-                    placeholder="Your message"
+                    placeholder={t("contact.form.messagePlaceholder")}
                     required
                   />
                   {errors.message && (
@@ -243,7 +255,7 @@ const Contact = () => {
                   fullWidth
                   isLoading={isSubmitting}
                 >
-                  Send Message
+                  {t("contact.form.send")}
                 </Button>
               </form>
             )}
@@ -253,36 +265,29 @@ const Contact = () => {
         {/* FAQ Section */}
         <div className="mt-12">
           <h2 className="text-2xl font-bold text-gray-900 mb-6">
-            Frequently Asked Questions
+            {t("contact.faq.title")}
           </h2>
           <div className="space-y-4">
             <div className="bg-white shadow-sm rounded-lg p-6">
               <h3 className="text-lg font-medium text-gray-900 mb-2">
-                How do I get my game credits?
+                {t("contact.faq.credits.question")}
               </h3>
-              <p className="text-gray-600">
-                Credits are delivered instantly to your account after successful
-                payment. You'll receive a confirmation email with the details.
-              </p>
+              <p className="text-gray-600">{t("contact.faq.credits.answer")}</p>
             </div>
 
             <div className="bg-white shadow-sm rounded-lg p-6">
               <h3 className="text-lg font-medium text-gray-900 mb-2">
-                What payment methods do you accept?
+                {t("contact.faq.payment.question")}
               </h3>
-              <p className="text-gray-600">
-                We accept all major credit cards, PayPal, and various digital
-                payment methods. All transactions are secure and encrypted.
-              </p>
+              <p className="text-gray-600">{t("contact.faq.payment.answer")}</p>
             </div>
 
             <div className="bg-white shadow-sm rounded-lg p-6">
               <h3 className="text-lg font-medium text-gray-900 mb-2">
-                How long do the credits last?
+                {t("contact.faq.validity.question")}
               </h3>
               <p className="text-gray-600">
-                Credits are valid for the duration specified in your package.
-                Most packages have a validity period of 24-72 hours.
+                {t("contact.faq.validity.answer")}
               </p>
             </div>
           </div>

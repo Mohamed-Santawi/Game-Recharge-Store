@@ -3,6 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../contexts/AuthContext";
 import Button from "../components/Button";
 import Input from "../components/Input";
+import { useTranslation } from "react-i18next";
 
 const Register = () => {
   const [formData, setFormData] = useState({
@@ -15,6 +16,7 @@ const Register = () => {
   const [isLoading, setIsLoading] = useState(false);
   const { register } = useAuth();
   const navigate = useNavigate();
+  const { t } = useTranslation();
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -34,24 +36,24 @@ const Register = () => {
   const validateForm = () => {
     const newErrors = {};
     if (!formData.email) {
-      newErrors.email = "Email is required";
+      newErrors.email = t("auth.emailRequired");
     } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
-      newErrors.email = "Please enter a valid email address";
+      newErrors.email = t("auth.invalidEmail");
     }
     if (!formData.password) {
-      newErrors.password = "Password is required";
+      newErrors.password = t("auth.passwordRequired");
     } else if (formData.password.length < 6) {
-      newErrors.password = "Password must be at least 6 characters";
+      newErrors.password = t("auth.passwordLength");
     }
     if (!formData.confirmPassword) {
-      newErrors.confirmPassword = "Please confirm your password";
+      newErrors.confirmPassword = t("auth.confirmPasswordRequired");
     } else if (formData.password !== formData.confirmPassword) {
-      newErrors.confirmPassword = "Passwords do not match";
+      newErrors.confirmPassword = t("auth.passwordsDoNotMatch");
     }
     if (!formData.username) {
-      newErrors.username = "Username is required";
+      newErrors.username = t("auth.usernameRequired");
     } else if (formData.username.length < 3) {
-      newErrors.username = "Username must be at least 3 characters";
+      newErrors.username = t("auth.usernameLength");
     }
     return newErrors;
   };
@@ -71,7 +73,7 @@ const Register = () => {
       navigate("/profile");
     } catch (error) {
       setErrors({
-        submit: error.message || "Failed to create account. Please try again.",
+        submit: error.message || t("auth.registerFailed"),
       });
     } finally {
       setIsLoading(false);
@@ -83,55 +85,55 @@ const Register = () => {
       <div className="max-w-md w-full space-y-8 bg-white p-8 rounded-xl shadow-lg">
         <div>
           <h2 className="text-3xl font-bold text-center text-gray-900">
-            Create Account
+            {t("auth.createAccount")}
           </h2>
           <p className="mt-2 text-center text-sm text-gray-600">
-            Join our gaming community
+            {t("auth.joinCommunity")}
           </p>
         </div>
 
         <form className="mt-8 space-y-6" onSubmit={handleSubmit}>
           <div className="space-y-4">
             <Input
-              label="Username"
+              label={t("auth.username")}
               type="text"
               name="username"
               value={formData.username}
               onChange={handleInputChange}
-              placeholder="Choose a username"
+              placeholder={t("auth.chooseUsername")}
               required
               error={errors.username}
             />
 
             <Input
-              label="Email"
+              label={t("auth.email")}
               type="email"
               name="email"
               value={formData.email}
               onChange={handleInputChange}
-              placeholder="Enter your email"
+              placeholder={t("auth.enterEmail")}
               required
               error={errors.email}
             />
 
             <Input
-              label="Password"
+              label={t("auth.password")}
               type="password"
               name="password"
               value={formData.password}
               onChange={handleInputChange}
-              placeholder="Create a password"
+              placeholder={t("auth.createPassword")}
               required
               error={errors.password}
             />
 
             <Input
-              label="Confirm Password"
+              label={t("auth.confirmPassword")}
               type="password"
               name="confirmPassword"
               value={formData.confirmPassword}
               onChange={handleInputChange}
-              placeholder="Confirm your password"
+              placeholder={t("auth.confirmPasswordPlaceholder")}
               required
               error={errors.confirmPassword}
             />
@@ -151,19 +153,19 @@ const Register = () => {
               fullWidth
               isLoading={isLoading}
             >
-              Create Account
+              {t("auth.createAccount")}
             </Button>
           </div>
         </form>
 
         <div className="text-center">
           <p className="text-sm text-gray-600">
-            Already have an account?{" "}
+            {t("auth.haveAccount")}{" "}
             <Link
               to="/login"
               className="font-medium text-blue-600 hover:text-blue-500"
             >
-              Sign in
+              {t("auth.login")}
             </Link>
           </p>
         </div>

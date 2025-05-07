@@ -1,9 +1,11 @@
 import { useState } from "react";
 import { useAuth } from "../contexts/AuthContext";
 import Button from "../components/Button";
+import { useTranslation } from "react-i18next";
 
 const Cart = () => {
   const { currentUser } = useAuth();
+  const { t } = useTranslation();
   const [cartItems, setCartItems] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
 
@@ -40,21 +42,21 @@ const Cart = () => {
 
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-      <h1 className="text-3xl font-bold text-gray-900 mb-8">Shopping Cart</h1>
+      <h1 className="text-3xl font-bold text-gray-900 mb-8">
+        {t("cart.title")}
+      </h1>
 
       {cartItems.length === 0 ? (
         <div className="text-center py-12">
           <h2 className="text-2xl font-semibold text-gray-600 mb-4">
-            Your cart is empty
+            {t("cart.empty")}
           </h2>
-          <p className="text-gray-500 mb-8">
-            Add some game packages to get started!
-          </p>
+          <p className="text-gray-500 mb-8">{t("cart.continueShopping")}</p>
           <Button
             variant="primary"
             onClick={() => (window.location.href = "/")}
           >
-            Browse Packages
+            {t("home.browseAll")}
           </Button>
         </div>
       ) : (
@@ -99,14 +101,14 @@ const Cart = () => {
                         ${(item.price * item.quantity).toFixed(2)}
                       </p>
                       <p className="text-sm text-gray-500">
-                        ${item.price} each
+                        ${item.price} {t("cart.each")}
                       </p>
                     </div>
                     <button
                       onClick={() => handleRemoveItem(item.id)}
                       className="text-red-600 hover:text-red-800"
                     >
-                      Remove
+                      {t("cart.remove")}
                     </button>
                   </div>
                 </div>
@@ -118,15 +120,15 @@ const Cart = () => {
           <div className="lg:col-span-1">
             <div className="bg-white shadow-sm rounded-lg p-6">
               <h2 className="text-lg font-medium text-gray-900 mb-4">
-                Order Summary
+                {t("cart.orderSummary")}
               </h2>
               <div className="space-y-4">
                 <div className="flex justify-between">
-                  <span className="text-gray-600">Subtotal</span>
+                  <span className="text-gray-600">{t("cart.subtotal")}</span>
                   <span className="text-gray-900">${total.toFixed(2)}</span>
                 </div>
                 <div className="flex justify-between">
-                  <span className="text-gray-600">Tax</span>
+                  <span className="text-gray-600">{t("cart.tax")}</span>
                   <span className="text-gray-900">
                     ${(total * 0.1).toFixed(2)}
                   </span>
@@ -134,7 +136,7 @@ const Cart = () => {
                 <div className="border-t pt-4">
                   <div className="flex justify-between">
                     <span className="text-lg font-medium text-gray-900">
-                      Total
+                      {t("cart.total")}
                     </span>
                     <span className="text-lg font-medium text-gray-900">
                       ${(total * 1.1).toFixed(2)}
@@ -148,7 +150,7 @@ const Cart = () => {
                   onClick={handleCheckout}
                   isLoading={isLoading}
                 >
-                  Proceed to Checkout
+                  {t("cart.checkout")}
                 </Button>
               </div>
             </div>

@@ -1,5 +1,6 @@
 import { AuthProvider } from "./contexts/AuthContext";
 import Layout from "./components/Layout";
+import "./i18n";
 
 function App() {
   return (

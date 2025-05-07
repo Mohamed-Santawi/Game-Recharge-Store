@@ -1,34 +1,33 @@
 import { useState, useEffect } from "react";
 import { useAuth } from "../contexts/AuthContext";
 import Button from "../components/Button";
+import { useTranslation } from "react-i18next";
 
-// Mock data for game packages
+// Mock data for game packages with translation keys
 const mockPackages = [
   {
     id: 1,
-    name: "Basic Package",
+    type: "basic",
     price: 5,
-    description: "Perfect for casual gamers",
-    features: ["100 Game Credits", "Basic Support", "24h Validity"],
+    features: ["credits", "support", "validity"],
   },
   {
     id: 2,
-    name: "Standard Package",
+    type: "standard",
     price: 10,
-    description: "Great value for regular players",
-    features: ["250 Game Credits", "Priority Support", "48h Validity"],
+    features: ["credits", "support", "validity"],
   },
   {
     id: 3,
-    name: "Premium Package",
+    type: "premium",
     price: 20,
-    description: "Best deal for serious gamers",
-    features: ["600 Game Credits", "VIP Support", "72h Validity"],
+    features: ["credits", "support", "validity"],
   },
 ];
 
 const Homepage = () => {
   const { currentUser, userData } = useAuth();
+  const { t } = useTranslation();
   const [packages, setPackages] = useState(mockPackages);
   const [isLoading, setIsLoading] = useState(false);
 
@@ -56,15 +55,12 @@ const Homepage = () => {
       <section className="bg-blue-500 text-white py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
-            <h1 className="text-4xl font-bold mb-4">
-              Welcome to Game Recharge Store
-            </h1>
-            <p className="text-xl mb-8">
-              Get your game credits instantly and start playing!
-            </p>
+            <h1 className="text-4xl font-bold mb-4">{t("home.welcome")}</h1>
+            <p className="text-xl mb-8">{t("home.featured")}</p>
             {currentUser && (
               <p className="text-lg">
-                Hello, {userData?.username || "Gamer"}! Ready to recharge?
+                {t("home.welcome")}, {userData?.username || "Gamer"}!{" "}
+                {t("home.browseAll")}
               </p>
             )}
           </div>
@@ -75,11 +71,11 @@ const Homepage = () => {
       <section className="py-12">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <h2 className="text-3xl font-bold text-center text-gray-900 mb-8">
-            Choose Your Package
+            {t("home.categories")}
           </h2>
 
           {isLoading ? (
-            <div className="text-center">Loading packages...</div>
+            <div className="text-center">{t("common.loading")}</div>
           ) : (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
               {packages.map((pkg) => (
@@ -89,34 +85,38 @@ const Homepage = () => {
                 >
                   <div className="text-center">
                     <h3 className="text-xl font-bold text-gray-900 mb-2">
-                      {pkg.name}
+                      {t(`packages.${pkg.type}.name`)}
                     </h3>
                     <p className="text-3xl font-bold text-blue-600 mb-4">
                       ${pkg.price}
                     </p>
-                    <p className="text-gray-600 mb-6">{pkg.description}</p>
+                    <p className="text-gray-600 mb-6">
+                      {t(`packages.${pkg.type}.description`)}
+                    </p>
                   </div>
 
                   <ul className="space-y-3 mb-6">
-                    {pkg.features.map((feature, index) => (
+                    {pkg.features.map((feature) => (
                       <li
-                        key={index}
-                        className="flex items-center text-gray-700"
+                        key={feature}
+                        className="flex items-center justify-center text-gray-700"
                       >
-                        <svg
-                          className="h-5 w-5 text-green-500 mr-2"
-                          fill="none"
-                          stroke="currentColor"
-                          viewBox="0 0 24 24"
-                        >
-                          <path
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            strokeWidth={2}
-                            d="M5 13l4 4L19 7"
-                          />
-                        </svg>
-                        {feature}
+                        <div className="flex items-center justify-center w-full">
+                          <svg
+                            className="h-5 w-5 text-green-500 mr-2 flex-shrink-0"
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                          >
+                            <path
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              strokeWidth={2}
+                              d="M5 13l4 4L19 7"
+                            />
+                          </svg>
+                          <span className="text-center">{t(`packages.${pkg.type}.features.${feature}`)}</span>
+                        </div>
                       </li>
                     ))}
                   </ul>
@@ -127,10 +127,12 @@ const Homepage = () => {
                     fullWidth
                     onClick={() => {
                       // TODO: Implement add to cart functionality
-                      console.log(`Added ${pkg.name} to cart`);
+                      console.log(
+                        `Added ${t(`packages.${pkg.type}.name`)} to cart`
+                      );
                     }}
                   >
-                    Add to Cart
+                    {t("game.addToCart")}
                   </Button>
                 </div>
               ))}
@@ -159,10 +161,10 @@ const Homepage = () => {
                   />
                 </svg>
               </div>
-              <h3 className="text-lg font-semibold mb-2">Instant Delivery</h3>
-              <p className="text-gray-600">
-                Get your credits instantly after payment
-              </p>
+              <h3 className="text-lg font-semibold mb-2">
+                {t("home.trending")}
+              </h3>
+              <p className="text-gray-600">{t("home.specialOffers")}</p>
             </div>
 
             <div className="text-center">
@@ -181,10 +183,10 @@ const Homepage = () => {
                   />
                 </svg>
               </div>
-              <h3 className="text-lg font-semibold mb-2">Secure Payment</h3>
-              <p className="text-gray-600">
-                Your transactions are always secure
-              </p>
+              <h3 className="text-lg font-semibold mb-2">
+                {t("home.popular")}
+              </h3>
+              <p className="text-gray-600">{t("home.new")}</p>
             </div>
 
             <div className="text-center">
@@ -203,8 +205,10 @@ const Homepage = () => {
                   />
                 </svg>
               </div>
-              <h3 className="text-lg font-semibold mb-2">24/7 Support</h3>
-              <p className="text-gray-600">We're here to help you anytime</p>
+              <h3 className="text-lg font-semibold mb-2">
+                {t("home.viewAll")}
+              </h3>
+              <p className="text-gray-600">{t("home.categories")}</p>
             </div>
           </div>
         </div>

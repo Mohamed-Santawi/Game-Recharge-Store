@@ -1,0 +1,227 @@
+{
+  "nav": {
+    "home": "الرئيسية",
+    "cart": "السلة",
+    "contact": "اتصل بنا",
+    "profile": "الملف الشخصي",
+    "admin": "المدير"
+  },
+  "auth": {
+    "login": "تسجيل الدخول",
+    "logout": "تسجيل الخروج",
+    "register": "إنشاء حساب",
+    "forgotPassword": "نسيت كلمة المرور؟",
+    "email": "البريد الإلكتروني",
+    "password": "كلمة المرور",
+    "confirmPassword": "تأكيد كلمة المرور",
+    "rememberMe": "تذكرني",
+    "noAccount": "ليس لديك حساب؟",
+    "haveAccount": "لديك حساب بالفعل؟",
+    "resetPassword": "إعادة تعيين كلمة المرور",
+    "sendResetLink": "إرسال رابط إعادة التعيين",
+    "welcomeBack": "مرحباً بعودتك",
+    "signInToAccount": "سجل دخولك إلى حسابك",
+    "enterEmail": "أدخل بريدك الإلكتروني",
+    "enterPassword": "أدخل كلمة المرور",
+    "emailRequired": "البريد الإلكتروني مطلوب",
+    "invalidEmail": "الرجاء إدخال بريد إلكتروني صحيح",
+    "passwordRequired": "كلمة المرور مطلوبة",
+    "loginFailed": "فشل تسجيل الدخول. الرجاء المحاولة مرة أخرى.",
+    "createAccount": "إنشاء حساب",
+    "joinCommunity": "انضم إلى مجتمعنا للاعبين",
+    "username": "اسم المستخدم",
+    "chooseUsername": "اختر اسم مستخدم",
+    "createPassword": "إنشاء كلمة مرور",
+    "confirmPasswordPlaceholder": "تأكيد كلمة المرور",
+    "usernameRequired": "اسم المستخدم مطلوب",
+    "usernameLength": "يجب أن يكون اسم المستخدم 3 أحرف على الأقل",
+    "passwordLength": "يجب أن تكون كلمة المرور 6 أحرف على الأقل",
+    "confirmPasswordRequired": "الرجاء تأكيد كلمة المرور",
+    "passwordsDoNotMatch": "كلمات المرور غير متطابقة",
+    "registerFailed": "فشل إنشاء الحساب. الرجاء المحاولة مرة أخرى."
+  },
+  "search": {
+    "placeholder": "ابحث عن الألعاب...",
+    "results": "نتائج البحث",
+    "noResults": "لم يتم العثور على ألعاب",
+    "filters": "التصفية",
+    "sortBy": "ترتيب حسب",
+    "price": "السعر",
+    "category": "الفئة",
+    "platform": "المنصة"
+  },
+  "common": {
+    "language": "اللغة",
+    "close": "إغلاق",
+    "open": "فتح",
+    "loading": "جاري التحميل...",
+    "error": "خطأ",
+    "success": "تم بنجاح",
+    "save": "حفظ",
+    "cancel": "إلغاء",
+    "delete": "حذف",
+    "edit": "تعديل",
+    "back": "رجوع",
+    "next": "التالي",
+    "submit": "إرسال",
+    "required": "مطلوب"
+  },
+  "home": {
+    "welcome": "مرحباً بك في متجر الألعاب",
+    "featured": "الألعاب المميزة",
+    "new": "وصل حديثاً",
+    "popular": "الألعاب الشائعة",
+    "viewAll": "عرض الكل",
+    "categories": "فئات الألعاب",
+    "trending": "الأكثر رواجاً",
+    "specialOffers": "العروض الخاصة",
+    "browseAll": "تصفح جميع الألعاب"
+  },
+  "cart": {
+    "title": "سلة التسوق",
+    "empty": "سلة التسوق فارغة",
+    "checkout": "إتمام الشراء",
+    "total": "المجموع",
+    "subtotal": "المجموع الفرعي",
+    "tax": "الضريبة",
+    "shipping": "الشحن",
+    "remove": "إزالة",
+    "quantity": "الكمية",
+    "update": "تحديث السلة",
+    "continueShopping": "أضف بعض باقات الألعاب للبدء!",
+    "applyCoupon": "تطبيق الكوبون",
+    "couponCode": "رمز الكوبون",
+    "each": "لكل",
+    "orderSummary": "ملخص الطلب"
+  },
+  "profile": {
+    "title": "الملف الشخصي",
+    "orders": "طلباتي",
+    "settings": "الإعدادات",
+    "account": "معلومات الحساب",
+    "personalInfo": "المعلومات الشخصية",
+    "changePassword": "تغيير كلمة المرور",
+    "addresses": "عناويني",
+    "paymentMethods": "طرق الدفع",
+    "notifications": "الإشعارات",
+    "security": "إعدادات الأمان",
+    "firstName": "الاسم الأول",
+    "lastName": "الاسم الأخير",
+    "phone": "رقم الهاتف",
+    "address": "العنوان",
+    "city": "المدينة",
+    "country": "الدولة",
+    "zipCode": "الرمز البريدي"
+  },
+  "admin": {
+    "dashboard": "لوحة التحكم",
+    "products": "المنتجات",
+    "orders": "الطلبات",
+    "customers": "العملاء",
+    "reports": "التقارير",
+    "settings": "الإعدادات",
+    "addProduct": "إضافة منتج",
+    "editProduct": "تعديل المنتج",
+    "productDetails": "تفاصيل المنتج",
+    "orderDetails": "تفاصيل الطلب",
+    "customerDetails": "تفاصيل العميل",
+    "analytics": "التحليلات",
+    "inventory": "المخزون",
+    "categories": "الفئات",
+    "promotions": "العروض الترويجية"
+  },
+  "contact": {
+    "title": "اتصل بنا",
+    "getInTouch": "تواصل معنا",
+    "sendMessage": "أرسل لنا رسالة",
+    "form": {
+      "name": "الاسم",
+      "namePlaceholder": "اسمك",
+      "nameRequired": "الاسم مطلوب",
+      "email": "البريد الإلكتروني",
+      "emailPlaceholder": "بريدك الإلكتروني",
+      "emailRequired": "البريد الإلكتروني مطلوب",
+      "invalidEmail": "الرجاء إدخال بريد إلكتروني صحيح",
+      "subject": "الموضوع",
+      "subjectPlaceholder": "موضوع الرسالة",
+      "subjectRequired": "الموضوع مطلوب",
+      "message": "الرسالة",
+      "messagePlaceholder": "رسالتك",
+      "messageRequired": "الرسالة مطلوبة",
+      "send": "إرسال الرسالة",
+      "success": "شكراً لرسالتك! سنتواصل معك قريباً.",
+      "error": "فشل في إرسال الرسالة. الرجاء المحاولة مرة أخرى."
+    },
+    "info": {
+      "email": "البريد الإلكتروني",
+      "phone": "الهاتف",
+      "location": "الموقع",
+      "emailValue": "support@gamerecharge.com",
+      "phoneValue": "+1 (555) 123-4567",
+      "locationValue": "123 شارع الألعاب، المدينة الرقمية، 12345"
+    },
+    "faq": {
+      "title": "الأسئلة الشائعة",
+      "credits": {
+        "question": "كيف أحصل على رصيد الألعاب؟",
+        "answer": "يتم تسليم الرصيد فوراً إلى حسابك بعد نجاح عملية الدفع. ستتلقى بريداً إلكترونياً للتأكيد مع التفاصيل."
+      },
+      "payment": {
+        "question": "ما هي طرق الدفع المقبولة؟",
+        "answer": "نقبل جميع بطاقات الائتمان الرئيسية، PayPal، وطرق الدفع الرقمية المختلفة. جميع المعاملات آمنة ومشفرة."
+      },
+      "validity": {
+        "question": "كم من الوقت يستمر الرصيد؟",
+        "answer": "الرصيد صالح لمدة محددة في الباقة الخاصة بك. معظم الباقات لها فترة صلاحية تتراوح من 24 إلى 72 ساعة."
+      }
+    }
+  },
+  "game": {
+    "details": "تفاصيل اللعبة",
+    "description": "الوصف",
+    "requirements": "متطلبات النظام",
+    "reviews": "المراجعات",
+    "related": "ألعاب ذات صلة",
+    "addToCart": "إضافة إلى السلة",
+    "buyNow": "شراء الآن",
+    "price": "السعر",
+    "platform": "المنصة",
+    "genre": "النوع",
+    "releaseDate": "تاريخ الإصدار",
+    "developer": "المطور",
+    "publisher": "الناشر",
+    "rating": "التقييم",
+    "download": "تحميل",
+    "size": "حجم الملف",
+    "language": "اللغة"
+  },
+  "packages": {
+    "basic": {
+      "name": "الباقة الأساسية",
+      "description": "مثالية للاعبين العاديين",
+      "features": {
+        "credits": "100 رصيد لعبة",
+        "support": "دعم أساسي",
+        "validity": "صالح لمدة 24 ساعة"
+      }
+    },
+    "standard": {
+      "name": "الباقة القياسية",
+      "description": "قيمة رائعة للاعبين المنتظمين",
+      "features": {
+        "credits": "250 رصيد لعبة",
+        "support": "دعم ذو أولوية",
+        "validity": "صالح لمدة 48 ساعة"
+      }
+    },
+    "premium": {
+      "name": "الباقة المميزة",
+      "description": "أفضل صفقة للاعبين المحترفين",
+      "features": {
+        "credits": "600 رصيد لعبة",
+        "support": "دعم VIP",
+        "validity": "صالح لمدة 72 ساعة"
+      }
+    }
+  }
+}

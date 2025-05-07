@@ -3,6 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../contexts/AuthContext";
 import Button from "../components/Button";
 import Input from "../components/Input";
+import { useTranslation } from "react-i18next";
 
 const Login = () => {
   const [formData, setFormData] = useState({
@@ -13,6 +14,7 @@ const Login = () => {
   const [isLoading, setIsLoading] = useState(false);
   const { login } = useAuth();
   const navigate = useNavigate();
+  const { t } = useTranslation();
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -32,12 +34,12 @@ const Login = () => {
   const validateForm = () => {
     const newErrors = {};
     if (!formData.email) {
-      newErrors.email = "Email is required";
+      newErrors.email = t("auth.emailRequired");
     } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
-      newErrors.email = "Please enter a valid email address";
+      newErrors.email = t("auth.invalidEmail");
     }
     if (!formData.password) {
-      newErrors.password = "Password is required";
+      newErrors.password = t("auth.passwordRequired");
     }
     return newErrors;
   };
@@ -57,7 +59,7 @@ const Login = () => {
       navigate("/profile");
     } catch (error) {
       setErrors({
-        submit: error.message || "Failed to sign in. Please try again.",
+        submit: error.message || t("auth.loginFailed"),
       });
     } finally {
       setIsLoading(false);
@@ -69,33 +71,33 @@ const Login = () => {
       <div className="max-w-md w-full space-y-8 bg-white p-8 rounded-xl shadow-lg">
         <div>
           <h2 className="text-3xl font-bold text-center text-gray-900">
-            Welcome Back
+            {t("auth.welcomeBack")}
           </h2>
           <p className="mt-2 text-center text-sm text-gray-600">
-            Sign in to your account
+            {t("auth.signInToAccount")}
           </p>
         </div>
 
         <form className="mt-8 space-y-6" onSubmit={handleSubmit}>
           <div className="space-y-4">
             <Input
-              label="Email"
+              label={t("auth.email")}
               type="email"
               name="email"
               value={formData.email}
               onChange={handleInputChange}
-              placeholder="Enter your email"
+              placeholder={t("auth.enterEmail")}
               required
               error={errors.email}
             />
 
             <Input
-              label="Password"
+              label={t("auth.password")}
               type="password"
               name="password"
               value={formData.password}
               onChange={handleInputChange}
-              placeholder="Enter your password"
+              placeholder={t("auth.enterPassword")}
               required
               error={errors.password}
             />
@@ -119,7 +121,7 @@ const Login = () => {
                 htmlFor="remember-me"
                 className="ml-2 block text-sm text-gray-900"
               >
-                Remember me
+                {t("auth.rememberMe")}
               </label>
             </div>
 
@@ -128,7 +130,7 @@ const Login = () => {
                 to="/forgot-password"
                 className="font-medium text-blue-600 hover:text-blue-500"
               >
-                Forgot your password?
+                {t("auth.forgotPassword")}
               </Link>
             </div>
           </div>
@@ -141,19 +143,19 @@ const Login = () => {
               fullWidth
               isLoading={isLoading}
             >
-              Sign in
+              {t("auth.login")}
             </Button>
           </div>
         </form>
 
         <div className="text-center">
           <p className="text-sm text-gray-600">
-            Don't have an account?{" "}
+            {t("auth.noAccount")}{" "}
             <Link
               to="/register"
               className="font-medium text-blue-600 hover:text-blue-500"
             >
-              Sign up
+              {t("auth.register")}
             </Link>
           </p>
         </div>
